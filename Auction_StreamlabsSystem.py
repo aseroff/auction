@@ -55,7 +55,7 @@ def Execute(data):
                                         timer.start()
 			else:
 				Parent.SendStreamMessage("There is an auction already in progress!")
-		elif (data.Message.strip().split(" ")[0] == "!bid" and data.Message.strip().split(" ")[1].is_digit() and time_elapsed != -1):
+		elif (data.Message.strip().split(" ")[0] == "!bid" and data.Message.strip().split(" ")[1].isdigit() and time_elapsed != -1):
 			newbid = int(data.Message.strip().split(" ")[1])
                         min = bid + int(settings["minIncrement"])
 			if ((newbid == bid and username == "") or (newbid >= min)):
