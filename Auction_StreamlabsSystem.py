@@ -45,7 +45,7 @@ def Init():
 def Execute(data):
 	global time_elapsed, user, username, bid
 	if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])) and data.IsChatMessage():
-		if (data.Message.strip().split(" ")[0] == "!auction"):
+		if (data.Message.strip().split(" ")[0] == "!auction" and Parent.HasPermission(data.User,"mod","ankhheart")):
                         auction = data.Message.strip().replace("!auction ", "")
 			if (time_elapsed == -1):
                                 time_elapsed = 0
