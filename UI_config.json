@@ -1,0 +1,74 @@
+{
+  "output_file": "config.json",
+  "liveOnly": {
+    "type": "checkbox",
+    "value": true,
+    "label": "Live Only Mode",
+    "tooltip": "True if you want it to only run when you are live",
+    "group": "General"
+  },
+  "secondsToWin": {
+    "type": "numberbox",
+    "value": 30,
+    "label": "Seconds to Win",
+    "tooltip": "How many seconds after a bid to close the auction.",
+    "group": "General"
+  },
+  "minIncrement": {
+    "type": "numberbox",
+    "value": 1,
+    "label": "Minimum Bid Increment",
+    "tooltip": "How much more a bid has to be.",
+    "group": "General"
+  },
+  "openingBid": {
+    "type": "numberbox",
+    "value": 0,
+    "label": "Opening Bid",
+    "tooltip": "Starting bid for the auction.",
+    "group": "General"
+  },
+  "firstWarning": {
+    "type": "numberbox",
+    "value": 10,
+    "label": "Time Remaining of First Warning",
+    "tooltip": "Seconds remaining when first warning message is displayed.",
+    "group": "General"
+  },
+  "secondWarning": {
+    "type": "numberbox",
+    "value": 5,
+    "label": "Time Remaining of Second Warning",
+    "tooltip": "Seconds remaining when second warning message is displayed.",
+    "group": "General"
+  },
+  "firstWarningMessage": {
+    "type": "textbox",
+    "value": "/me Going once to $user for $bid!",
+    "label": "Going Once Message",
+    "tooltip": "Message for first warning.\r\n $user = Username\r\n $bid = value of winning bid",
+    "group": "Response Messages"
+  },
+  "secondWarningMessage": {
+    "type": "textbox",
+    "value": "/me Going twice to $user for $bid!",
+    "label": "Going Twice Message",
+    "tooltip": "Message for second warning.\r\n $user = Username\r\n $bid = value of winning bid",
+    "group": "Response Messages"
+  },
+  "winningMessage": {
+    "type": "textbox",
+    "value": "/me Sold to $user for $bid!",
+    "label": "Winning Message",
+    "tooltip": "Message when a user has won the auction.\r\n $user = Username\r\n $bid = value of winning bid",
+    "group": "Response Messages"
+  },
+  "openReadMe": {
+    "type": "button",
+    "label": "Open 'Readme Me' file",
+    "tooltip": "Opens the 'Readme.txt' for this script.",
+    "function": "OpenReadMe",
+    "wsevent": "",
+    "group": ""
+  }
+}
