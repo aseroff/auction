@@ -14,6 +14,7 @@ Version = "1.0.0"
 
 configFile = "config.json"
 settings = {}
+auction = ""
 bid = 0
 user = 0
 username = ""
@@ -48,11 +49,11 @@ def Init():
 		}
 
 def Execute(data):
-	global time_elapsed, user, username, bid
+	global time_elapsed, user, username, bid, auction
 	if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])) and data.IsChatMessage():
 		if (data.Message.strip().split(" ")[0] == "!auction" and Parent.HasPermission(data.User,"mod",data.UserName)):
-                        auction = data.Message.strip().replace("!auction ", "")
 			if (time_elapsed == -1):
+				auction = data.Message.strip().replace("!auction ", "")
                                 time_elapsed = 0
                                 Parent.SendStreamMessage(settings["openingMessage"].replace("$auction", auction).replace("$currency", Parent.GetCurrencyName()).replace("$bid", str(settings["openingBid"])).replace("$increment", str(settings["minIncrement"])))
                                 timer = threading.Timer(1.0, timing)
@@ -64,7 +65,7 @@ def Execute(data):
 			newbid = int(data.Message.strip().split(" ")[1])
                         min = bid + int(settings["minIncrement"])
 			if ((newbid == bid and username == "") or (newbid >= min)):
-				if ((Parent.GetPoints(data.UserName)) <= newbid):
+				if ((Parent.GetPoints(data.UserName)) >= newbid):
 					user = data.User
 					username = data.UserName
 					bid = int(newbid)
