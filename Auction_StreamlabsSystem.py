@@ -77,7 +77,7 @@ def timing():
 		elif (time_elapsed == (int(settings["secondsToWin"]) - int(settings["secondWarning"])) and int(bid) != settings["openingBid"]):
 			Parent.SendStreamMessage(settings["secondWarningMessage"].replace("$user", username).replace("$bid", str(bid)))
 		elif (time_elapsed == int(settings["secondsToWin"])):
-			if (bid != settings["openingBid"]):
+			if (username != ""):
 				Parent.SendStreamMessage(settings["winningMessage"].replace("$user", username).replace("$bid", str(bid)))
 				Parent.RemovePoints(user,username,bid)
 			else: 
