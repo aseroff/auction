@@ -46,21 +46,21 @@
     "type": "textbox",
     "value": "/me Going once to $user for $bid!",
     "label": "Going Once Message",
-    "tooltip": "Message for first warning.\r\n $user = Username\r\n $bid = value of winning bid",
+    "tooltip": "Message for first warning.\r\n $user = Username\r\n $bid = value of winning bid\r\n $currency = name of currency",
     "group": "Response Messages"
   },
   "secondWarningMessage": {
     "type": "textbox",
     "value": "/me Going twice to $user for $bid!",
     "label": "Going Twice Message",
-    "tooltip": "Message for second warning.\r\n $user = Username\r\n $bid = value of winning bid",
+    "tooltip": "Message for second warning.\r\n $user = Username\r\n $bid = value of winning bid\r\n $currency = name of currency",
     "group": "Response Messages"
   },
   "winningMessage": {
     "type": "textbox",
     "value": "/me Sold to $user for $bid!",
     "label": "Winning Message",
-    "tooltip": "Message when a user has won the auction.\r\n $user = Username\r\n $bid = value of winning bid",
+    "tooltip": "Message when a user has won the auction.\r\n $user = Username\r\n $bid = value of winning bid\r\n $currency = name of currency",
     "group": "Response Messages"
   },
   "openReadMe": {
