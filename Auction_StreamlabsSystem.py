@@ -38,6 +38,11 @@ def Init():
 			"openingBid": 0,
 			"firstWarning": 10,
 			"secondWarning": 5,
+			"openingMessage": "/me Bidding for $auction has opened at $bid $currency. You can bid on this auction by using !bid and then the amount you want to bid. Bids must be $increment higher than the previous bid.",
+			"auctionInProgressMessage": "There is an auction for $auction already in progress!",
+			"newBidMessage": "/me @$user has the high bid at $bid $currency. Do I hear $min?",
+			"insufficientFundsMessage": "Sorry @$user, you can't afford that bid. NotLikeThis",
+			"invalidBidMessage": "Invalid bid! Minimum bid is $min $currency.",
 			"firstWarningMessage": "/me Going once to @$user for $bid $currency!",
 			"secondWarningMessage": "/me Going twice to @$user for $bid $currency!",
 			"winningMessage": "/me $auction has sold to @$user for $bid $currency!"
@@ -50,12 +55,12 @@ def Execute(data):
                         auction = data.Message.strip().replace("!auction ", "")
 			if (time_elapsed == -1):
                                 time_elapsed = 0
-                                Parent.SendStreamMessage(("/me Bidding for $auction has opened at $bid $currency. You can bid on this auction by using !bid and then the amount you want to bid. Bids must be $increment higher than the previous bid.").replace("$auction", auction).replace("$currency", currency_name).replace("$bid", str(settings["openingBid"])).replace("$increment", str(settings["minIncrement"])))
+                                Parent.SendStreamMessage(settings["openingMessage"].replace("$auction", auction).replace("$currency", currency_name).replace("$bid", str(settings["openingBid"])).replace("$increment", str(settings["minIncrement"])))
                                 timer = threading.Timer(1.0, timing)
                                 if not timer.is_alive():
                                         timer.start()
 			else:
-				Parent.SendStreamMessage("There is an auction already in progress!")
+				Parent.SendStreamMessage(settings["auctionInProgress"].replace("$auction", auction))
 		elif (data.Message.strip().split(" ")[0] == "!bid" and data.Message.strip().split(" ")[1].isdigit() and time_elapsed != -1):
 			newbid = int(data.Message.strip().split(" ")[1])
                         min = bid + int(settings["minIncrement"])
@@ -65,11 +70,11 @@ def Execute(data):
 					username = data.UserName
 					bid = int(newbid)
 					time_elapsed = 0
-					Parent.SendStreamMessage(("/me @$user has the high bid at $bid $currency. Do I hear $min?").replace("$currency", currency_name).replace("$user", username).replace("$bid", str(bid)).replace("$min", str(bid + int(settings["minIncrement"]))))
+					Parent.SendStreamMessage(settings["newBidMessage"].replace("$currency", currency_name).replace("$user", username).replace("$bid", str(bid)).replace("$min", str(bid + int(settings["minIncrement"]))))
 				else:
-					Parent.SendStreamMessage(("Sorry @$user, you can't afford that bid. NotLikeThis").replace("$user", data.UserName))
+					Parent.SendStreamMessage(settings["insufficientFundsMessage"].replace("$user", data.UserName))
 			else:
-				Parent.SendStreamMessage(("Invalid bid! Minimum bid is $min $currency.").replace("$currency", currency_name).replace("$min", str(min)))
+				Parent.SendStreamMessage(settings["invalidBidMessage"].replace("$currency", currency_name).replace("$min", str(min)))
 	return
 
 def timing():
