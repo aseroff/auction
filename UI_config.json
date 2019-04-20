@@ -42,6 +42,41 @@
     "tooltip": "Seconds remaining when second warning message is displayed.",
     "group": "General"
   },
+  "openingMessage": {
+    "type": "textbox",
+    "value": "/me Bidding for $auction has opened at $bid $currency. You can bid on this auction by using !bid and then the amount you want to bid. Bids must be $increment higher than the previous bid.",
+    "label": "Opening Message",
+    "tooltip": "Message to send when an auction begins.\r\n $user = Username\r\n $bid = value of winning bid\r\n $currency = name of currency\r\n $increment = minimum bid increment value",
+    "group": "Response Messages"
+  },
+  "auctionInProgressMessage": {
+    "type": "textbox",
+    "value": "There is an auction for $auction already in progress!",
+    "label": "Auction in Progress Message",
+    "tooltip": "Message to send when a mod attempts to start an auction while there is already one in progress.\r\n $auction = name of auction",
+    "group": "Response Messages"
+  },
+  "newBidMessage": {
+    "type": "textbox",
+    "value": "/me @$user has the high bid at $bid $currency. Do I hear $min?",
+    "label": "New Bid Message",
+    "tooltip": "Message to send when a user bids a new winning bid.\r\n $user = Username\r\n $bid = value of winning bid\r\n $currency = name of currency\r\n $min = minimum bid",
+    "group": "Response Messages"
+  },
+  "insufficientFundsMessage": {
+    "type": "textbox",
+    "value": "Sorry @$user, you can't afford that bid. NotLikeThis",
+    "label": "Insufficient Funds Message",
+    "tooltip": "Message to send when a user bids more currency than they have.\r\n $user = Username",
+    "group": "Response Messages"
+  },
+  "invalidBidMessage": {
+    "type": "textbox",
+    "value": "Invalid bid! Minimum bid is $min $currency.",
+    "label": "Invalid Bid Message",
+    "tooltip": "Message to send when a user bids an invalid value, either less than the minimum bid or a non-numeric value.\r\n min = minimum bid\r\n $currency = name of currency",
+    "group": "Response Messages"
+  },
   "firstWarningMessage": {
     "type": "textbox",
     "value": "/me Going once to $user for $bid $currency!",
