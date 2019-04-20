@@ -10,7 +10,7 @@ var settings = {
   "newBidMessage": "/me @$user has the high bid at $bid $currency. Do I hear $min?",
   "insufficientFundsMessage": "Sorry @$user, you can't afford that bid. NotLikeThis",
   "invalidBidMessage": "Invalid bid! Minimum bid is $min $currency.",
-  "firstWarningMessage": "/me Going once to $user for $bid!",
-  "secondWarningMessage": "/me Going twice to $user for $bid!",
-  "winningMessage": "/me Sold to $user for $bid!"
+  "firstWarningMessage": "/me Going once to $user for $bid $currency!",
+  "secondWarningMessage": "/me Going twice to $user for $bid $currency!",
+  "winningMessage": "/me Sold to $user for $bid $currency!"
 };
