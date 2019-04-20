@@ -98,6 +98,13 @@
     "tooltip": "Message when a user has won the auction.\r\n $user = Username\r\n $bid = value of winning bid\r\n $currency = name of currency",
     "group": "Response Messages"
   },
+  "noBidsMessage": {
+    "type": "textbox",
+    "value": "/me The auction for $auction has ended with no bids!",
+    "label": "No Winner Message",
+    "tooltip": "Message when no user bid on the auction.\r\n $auction = name of auction",
+    "group": "Response Messages"
+  },
   "openReadMe": {
     "type": "button",
     "label": "Open 'Readme Me' file",
