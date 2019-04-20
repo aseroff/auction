@@ -93,7 +93,7 @@
   },
   "winningMessage": {
     "type": "textbox",
-    "value": "/me Sold to $user for $bid $currency!",
+    "value": "/me $auction sold to $user for $bid $currency!",
     "label": "Winning Message",
     "tooltip": "Message when a user has won the auction.\r\n $user = Username\r\n $bid = value of winning bid\r\n $currency = name of currency",
     "group": "Response Messages"
