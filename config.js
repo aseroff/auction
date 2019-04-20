@@ -5,7 +5,7 @@ var settings = {
   "openingBid": 0,
   "firstWarning": 10,
   "secondWarning": 5,
-  "firstWarningMessage": "/me Going once to $user for $bid!",
-  "secondWarningMessage": "/me Going twice to $user for $bid!",
-  "winningMessage": "/me Sold to $user for $bid!"
+  "firstWarningMessage": "/me Going once to $user for $bid $currency!",
+  "secondWarningMessage": "/me Going twice to $user for $bid $currency!",
+  "winningMessage": "/me Sold to $user for $bid $currency!"
 };
