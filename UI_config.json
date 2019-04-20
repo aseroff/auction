@@ -44,21 +44,21 @@
   },
   "firstWarningMessage": {
     "type": "textbox",
-    "value": "/me Going once to $user for $bid!",
+    "value": "/me Going once to $user for $bid $currency!",
     "label": "Going Once Message",
     "tooltip": "Message for first warning.\r\n $user = Username\r\n $bid = value of winning bid\r\n $currency = name of currency",
     "group": "Response Messages"
   },
   "secondWarningMessage": {
     "type": "textbox",
-    "value": "/me Going twice to $user for $bid!",
+    "value": "/me Going twice to $user for $bid $currency!",
     "label": "Going Twice Message",
     "tooltip": "Message for second warning.\r\n $user = Username\r\n $bid = value of winning bid\r\n $currency = name of currency",
     "group": "Response Messages"
   },
   "winningMessage": {
     "type": "textbox",
-    "value": "/me Sold to $user for $bid!",
+    "value": "/me Sold to $user for $bid $currency!",
     "label": "Winning Message",
     "tooltip": "Message when a user has won the auction.\r\n $user = Username\r\n $bid = value of winning bid\r\n $currency = name of currency",
     "group": "Response Messages"
