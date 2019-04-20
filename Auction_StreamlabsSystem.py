@@ -59,12 +59,12 @@ def Execute(data):
                                 if not timer.is_alive():
                                         timer.start()
 			else:
-				Parent.SendStreamMessage(settings["auctionInProgress"].replace("$auction", auction))
+				Parent.SendStreamMessage((settings["auctionInProgressMessage"].replace("$auction", auction)))
 		elif (data.Message.strip().split(" ")[0] == "!bid" and data.Message.strip().split(" ")[1].isdigit() and time_elapsed != -1):
 			newbid = int(data.Message.strip().split(" ")[1])
                         min = bid + int(settings["minIncrement"])
 			if ((newbid == bid and username == "") or (newbid >= min)):
-				if (Parent.GetPoints(data.UserName) <= newbid):
+				if ((Parent.GetPoints(data.UserName)) <= newbid):
 					user = data.User
 					username = data.UserName
 					bid = int(newbid)
