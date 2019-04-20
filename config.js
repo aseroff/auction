@@ -12,5 +12,5 @@ var settings = {
   "invalidBidMessage": "Invalid bid! Minimum bid is $min $currency.",
   "firstWarningMessage": "/me Going once to $user for $bid $currency!",
   "secondWarningMessage": "/me Going twice to $user for $bid $currency!",
-  "winningMessage": "/me Sold to $user for $bid $currency!"
+  "winningMessage": "/me $auction has sold to $user for $bid $currency!"
 };
