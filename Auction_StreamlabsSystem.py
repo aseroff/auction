@@ -14,6 +14,7 @@ Version = "1.0.0"
 
 configFile = "config.json"
 settings = {}
+currency_name = ""
 auction = ""
 bid = 0
 user = 0
@@ -24,7 +25,9 @@ def ScriptToggled(state):
 	return
 
 def Init():
-	global configFile, settings
+	global configFile, settings, currency_name
+	
+	currency_name = Parent.GetCurrencyName()
 
 	path = os.path.dirname(__file__)
 	try:
@@ -45,7 +48,8 @@ def Init():
 			"invalidBidMessage": "Invalid bid! Minimum bid is $min $currency.",
 			"firstWarningMessage": "/me Going once to @$user for $bid $currency!",
 			"secondWarningMessage": "/me Going twice to @$user for $bid $currency!",
-			"winningMessage": "/me $auction has sold to @$user for $bid $currency!"
+			"winningMessage": "/me $auction has sold to @$user for $bid $currency!",
+			"noBidsMessage": "/me The auction for $auction has ended with no bids!"
 		}
 
 def Execute(data):
@@ -55,7 +59,7 @@ def Execute(data):
 			if (time_elapsed == -1):
 				auction = data.Message.strip().replace("!auction ", "")
                                 time_elapsed = 0
-                                Parent.SendStreamMessage(settings["openingMessage"].replace("$auction", auction).replace("$currency", Parent.GetCurrencyName()).replace("$bid", str(settings["openingBid"])).replace("$increment", str(settings["minIncrement"])))
+                                Parent.SendStreamMessage(settings["openingMessage"].replace("$auction", auction).replace("$currency", currency_name).replace("$bid", str(settings["openingBid"])).replace("$increment", str(settings["minIncrement"])))
                                 timer = threading.Timer(1.0, timing)
                                 if not timer.is_alive():
                                         timer.start()
@@ -70,11 +74,11 @@ def Execute(data):
 					username = data.UserName
 					bid = int(newbid)
 					time_elapsed = 0
-					Parent.SendStreamMessage(settings["newBidMessage"].replace("$currency", Parent.GetCurrencyName()).replace("$user", username).replace("$bid", str(bid)).replace("$min", str(bid + int(settings["minIncrement"]))))
+					Parent.SendStreamMessage(settings["newBidMessage"].replace("$currency", currency_name).replace("$user", username).replace("$bid", str(bid)).replace("$min", str(bid + int(settings["minIncrement"]))))
 				else:
 					Parent.SendStreamMessage(settings["insufficientFundsMessage"].replace("$user", data.UserName))
 			else:
-				Parent.SendStreamMessage(settings["invalidBidMessage"].replace("$currency", Parent.GetCurrencyName()).replace("$min", str(min)))
+				Parent.SendStreamMessage(settings["invalidBidMessage"].replace("$currency", currency_name).replace("$min", str(min)))
 	return
 
 def timing():
@@ -82,15 +86,15 @@ def timing():
         while ((time_elapsed != -1) and (time_elapsed < int(settings["secondsToWin"]))):
                 time_elapsed += 1
 		if (time_elapsed == (int(settings["secondsToWin"]) - int(settings["firstWarning"])) and int(bid) != settings["openingBid"]):
-			Parent.SendStreamMessage(settings["firstWarningMessage"].replace("$user", username).replace("$bid", str(bid)).replace("$currency", Parent.GetCurrencyName()))
+			Parent.SendStreamMessage(settings["firstWarningMessage"].replace("$user", username).replace("$bid", str(bid)).replace("$currency", currency_name))
 		elif (time_elapsed == (int(settings["secondsToWin"]) - int(settings["secondWarning"])) and int(bid) != settings["openingBid"]):
-			Parent.SendStreamMessage(settings["secondWarningMessage"].replace("$user", username).replace("$bid", str(bid)).replace("$currency", Parent.GetCurrencyName()))
+			Parent.SendStreamMessage(settings["secondWarningMessage"].replace("$user", username).replace("$bid", str(bid)).replace("$currency", currency_name))
 		elif (time_elapsed == int(settings["secondsToWin"])):
 			if (username != ""):
-				Parent.SendStreamMessage(settings["winningMessage"].replace("$user", username).replace("$auction", auction).replace("$bid", str(bid)).replace("$currency", Parent.GetCurrencyName()))
+				Parent.SendStreamMessage(settings["winningMessage"].replace("$user", username).replace("$auction", auction).replace("$bid", str(bid)).replace("$currency", currency_name))
 				Parent.RemovePoints(user,username,bid)
 			else: 
-				Parent.SendStreamMessage(("/me The auction for $auction has ended with no bids!").replace("$auction", auction))
+				Parent.SendStreamMessage(settings["noBidsMessage"].replace("$auction", auction))
 			time_elapsed = -1
 			user = 0
 			username = ""
