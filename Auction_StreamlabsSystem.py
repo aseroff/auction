@@ -78,7 +78,7 @@ def Execute(data):
 	return
 
 def timing():
-        global time_elapsed, user, username, bid
+        global time_elapsed, user, username, bid, auction
         while ((time_elapsed != -1) and (time_elapsed < int(settings["secondsToWin"]))):
                 time_elapsed += 1
 		if (time_elapsed == (int(settings["secondsToWin"]) - int(settings["firstWarning"])) and int(bid) != settings["openingBid"]):
@@ -87,10 +87,10 @@ def timing():
 			Parent.SendStreamMessage(settings["secondWarningMessage"].replace("$user", username).replace("$bid", str(bid)).replace("$currency", Parent.GetCurrencyName()))
 		elif (time_elapsed == int(settings["secondsToWin"])):
 			if (username != ""):
-				Parent.SendStreamMessage(settings["winningMessage"].replace("$user", username).replace("$bid", str(bid)).replace("$currency", Parent.GetCurrencyName()))
+				Parent.SendStreamMessage(settings["winningMessage"].replace("$user", username).replace("$auction", auction).replace("$bid", str(bid)).replace("$currency", Parent.GetCurrencyName()))
 				Parent.RemovePoints(user,username,bid)
 			else: 
-				Parent.SendStreamMessage("/me The auction has ended with no bids!")
+				Parent.SendStreamMessage(("/me The auction for $auction has ended with no bids!").replace("$auction", auction))
 			time_elapsed = -1
 			user = 0
 			username = ""
