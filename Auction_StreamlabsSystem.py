@@ -60,11 +60,14 @@ def Execute(data):
 			newbid = int(data.Message.strip().split(" ")[1])
                         min = bid + int(settings["minIncrement"])
 			if ((newbid == bid and username == "") or (newbid >= min)):
-				user = data.User
-				username = data.UserName
-				bid = int(newbid)
-				time_elapsed = 0
-				Parent.SendStreamMessage(("/me @$user has the high bid at $bid $currency. Do I hear $min?").replace("$currency", currency_name).replace("$user", username).replace("$bid", str(bid)).replace("$min", str(bid + int(settings["minIncrement"]))))
+				if (Parent.GetPoints(data.UserName) <= newbid):
+					user = data.User
+					username = data.UserName
+					bid = int(newbid)
+					time_elapsed = 0
+					Parent.SendStreamMessage(("/me @$user has the high bid at $bid $currency. Do I hear $min?").replace("$currency", currency_name).replace("$user", username).replace("$bid", str(bid)).replace("$min", str(bid + int(settings["minIncrement"]))))
+				else:
+					Parent.SendStreamMessage(("Sorry @$user, you can't afford that bid. NotLikeThis").replace("$user", data.UserName))
 			else:
 				Parent.SendStreamMessage(("Invalid bid! Minimum bid is $min $currency.").replace("$currency", currency_name).replace("$min", str(min)))
 	return
