@@ -53,7 +53,7 @@ def Init():
 		}
 
 def Execute(data):
-	global time_elapsed, user, username, bid, auction
+	global time_elapsed, user, username, bid, auction, currency_name
 	if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])) and data.IsChatMessage():
 		if (data.Message.strip().split(" ")[0] == "!auction" and Parent.HasPermission(data.User,"mod",data.UserName)):
 			if (time_elapsed == -1):
@@ -82,7 +82,7 @@ def Execute(data):
 	return
 
 def timing():
-        global time_elapsed, user, username, bid, auction
+        global time_elapsed, user, username, bid, auction, currency_name
         while ((time_elapsed != -1) and (time_elapsed < int(settings["secondsToWin"]))):
                 time_elapsed += 1
 		if (time_elapsed == (int(settings["secondsToWin"]) - int(settings["firstWarning"])) and int(bid) != settings["openingBid"]):
